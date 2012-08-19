@@ -1,0 +1,28 @@
+{
+  "name": "Community Boating Flag Color",
+  "version": "1.0",
+  "manifest_version": 2,
+  "description": "Indicates what color flag Boston's Community Boating is currently flying. Green = Low wind, Yellow = Moderate wind, Red = High wind.",
+  "browser_action": {
+    "default_icon": "error.png",
+    "default_title": "Community Boating"
+  },
+  "background": {
+    "scripts": [ "background.js" ]
+  },
+  "icons": {
+    "48": "icon48.png",
+    "128": "icon128.png"
+  },
+  "web_accessible_resources": [
+    "green.png",
+    "yellow.png",
+    "red.png",
+    "closed.png",
+    "error.png"
+  ],
+  "permissions": [
+    "notifications",
+    "http://www.community-boating.org/"
+  ]
+}
