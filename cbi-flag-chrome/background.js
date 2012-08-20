@@ -56,7 +56,7 @@ function updateFlag() {
 
 // Update flag once every minute.
 updateFlag();
-setInterval("updateFlag()", 60 * 1000);
+setInterval(updateFlag, 60 * 1000);
 
 // Go to CBI website on click.
 chrome.browserAction.onClicked.addListener(function(tab) {
