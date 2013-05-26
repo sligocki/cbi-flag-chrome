@@ -16,6 +16,21 @@ var errorFlag = { name: "Error", icon: "error.png",
 
 var lastFlag = 0;
 
+// Get current time string in format: 12/13 12:45
+function getCurrentTime() {
+  var now = new Date()
+	var month = now.getMonth() + 1
+	var day = now.getDate()
+	var hour = now.getHours()
+	var minute = now.getMinutes()
+	// Give leading zero to minute
+	if (minute < 10) {
+	  minute = "0" + minute
+	}
+
+	return month + "/" + day + " " + hour + ":" + minute
+}
+
 function updateFlag() {
   // Request Community Boating page.
   var request = new XMLHttpRequest();
@@ -48,7 +63,7 @@ function updateFlag() {
   // Send notification.
   if (flag !== lastFlag) {
     var notification = webkitNotifications.createNotification(
-        flag.icon, flag.name, flag.message);
+        flag.icon, flag.name + " " + getCurrentTime(), flag.message);
     notification.show();
     lastFlag = flag;
   }
