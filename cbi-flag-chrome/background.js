@@ -19,13 +19,13 @@ var lastFlag = 0;
 function updateFlag() {
   // Request Community Boating page.
   var request = new XMLHttpRequest();
-  request.open("GET", "http://www.community-boating.org/weather", false);
+  request.open("GET", "http://www.community-boating.org/cbi-weather", false);
   request.send();  // Blocking request
 
   // Parse current flag status.
   var flag = errorFlag;
   if (request.status === 200) {
-    var flagPattern = /Current Flag Status: (\w+)/g;
+    var flagPattern = /Current Flag is: .*(Green|Yellow|Red|Closed)/g;
     var color = flagPattern.exec(request.responseText)[1];
     switch (color) {
       case "Green":
