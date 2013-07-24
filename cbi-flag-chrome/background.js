@@ -3,7 +3,7 @@
  * @author sligocki@google.com (Shawn Ligocki)
  */
 
-var weatherUrl = "https://portal.community-boating.org/apex/f?p=710:1";
+var weatherUrl = "https://portal.community-boating.org/apex/f?p=710:1:0:::::";
 
 var greenFlag = { name: "Green", icon: "green.png",
                   message: "It's a Green flag day. Low winds." };
