@@ -1,9 +1,10 @@
 /**
- * @fileoverview Description of this file.
- * @author sligocki@google.com (Shawn Ligocki)
+ * @fileoverview Get CBI flag color and display on toolbar.
+ * @author sligocki@gmail.com (Shawn Ligocki)
  */
 
-var weatherUrl = "https://portal.community-boating.org/apex/f?p=710:1:0:::::";
+var cbiMainUrl = "http://www.community-boating.org/";
+var weatherUrl = "http://apex4.enciva.com/pls/apex/cbi_prod.flag_js";
 
 var greenFlag = { name: "Green", icon: "green.png",
                   message: "It's a Green flag day. Low winds." };
@@ -13,8 +14,10 @@ var redFlag = { name: "Red", icon: "red.png",
                 message: "It's a Red flag day. High winds." };
 var closedFlag = { name: "Closed", icon: "closed.png",
                    message: "Community Boating is closed." };
-var errorFlag = { name: "Error", icon: "error.png",
-    message: "Error reading " + weatherUrl };
+function errorFlag(contents) {
+    return { name: "Error", icon: "error.png",
+             message: "Error reading " + weatherUrl + " content: " + contents };
+}
 
 var lastFlag = 0;
 
@@ -40,9 +43,9 @@ function updateFlag() {
   request.send();  // Blocking request
 
   // Parse current flag status.
-  var flag = errorFlag;
+  var flag;
   if (request.status === 200) {
-    var flagPattern = /Current Flag is: .*(Green|Yellow|Red|Closed)/g;
+    var flagPattern = /var FLAG_COLOR = "(.)";/g;
     var result = flagPattern.exec(request.responseText);
     if (!result) {
       result = flagPattern.exec(request.responseText);
@@ -50,17 +53,20 @@ function updateFlag() {
     if (result) {
       var color = result[1];
       switch (color) {
-        case "Green":
+        case "G":
           flag = greenFlag;
           break;
-        case "Yellow":
+        case "Y":
           flag = yellowFlag;
           break;
-        case "Red":
+        case "R":
           flag = redFlag;
           break;
-        case "Closed":
+        case "C":
           flag = closedFlag;
+          break;
+        default:
+          flag = errorFlag(request.responseText);
           break;
       }
     }
@@ -83,5 +89,5 @@ setInterval(updateFlag, 60 * 1000);
 
 // Go to CBI website on click.
 chrome.browserAction.onClicked.addListener(function(tab) {
-  chrome.tabs.create({ url: weatherUrl });
+  chrome.tabs.create({ url: cbiMainUrl });
 });

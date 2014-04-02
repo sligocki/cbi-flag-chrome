@@ -1,6 +1,6 @@
 {
   "name": "Community Boating Flag Color",
-  "version": "1.6",
+  "version": "1.7",
   "manifest_version": 2,
   "description": "Indicates what color flag Boston's Community Boating is currently flying.",
   "browser_action": {
@@ -20,6 +20,6 @@
   "permissions": [
     "notifications",
     "http://www.community-boating.org/",
-    "https://portal.community-boating.org/"
+    "http://apex4.enciva.com/"
   ]
 }
