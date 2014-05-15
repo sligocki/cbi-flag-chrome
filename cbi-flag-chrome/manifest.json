@@ -1,21 +1,26 @@
 {
   "name": "Community Boating Flag Color",
-  "version": "1.7",
+  "version": "1.8",
   "manifest_version": 2,
   "description": "Indicates what color flag Boston's Community Boating is currently flying.",
   "browser_action": {
-    "default_icon": "error.png",
-    "default_title": "Community Boating"
+    "default_title": "Community Boating",
+    "default_icon": "images/error.png"
+  },
+  "icons": {
+    "16":  "images/icon16.png",
+    "48":  "images/icon48.png", 
+    "128": "images/icon128.png"
   },
   "background": {
     "scripts": [ "background.js" ]
   },
   "web_accessible_resources": [
-    "green.png",
-    "yellow.png",
-    "red.png",
-    "closed.png",
-    "error.png"
+    "images/green.png",
+    "images/yellow.png",
+    "images/red.png",
+    "images/closed.png",
+    "images/error.png"
   ],
   "permissions": [
     "notifications",

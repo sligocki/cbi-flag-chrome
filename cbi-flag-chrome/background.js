@@ -3,20 +3,20 @@
  * @author sligocki@gmail.com (Shawn Ligocki)
  */
 
-var cbiMainUrl = "http://www.community-boating.org/";
-var weatherUrl = "http://apex4.enciva.com/pls/apex/cbi_prod.flag_js";
+var clickUrl = "http://www.community-boating.org/about-us/weather-information/";
+var pollUrl = "http://apex4.enciva.com/pls/apex/cbi_prod.flag_js";
 
-var greenFlag = { name: "Green", icon: "green.png",
+var greenFlag = { name: "Green", icon: "images/green.png",
                   message: "It's a Green flag day. Low winds." };
-var yellowFlag = { name: "Yellow", icon: "yellow.png",
+var yellowFlag = { name: "Yellow", icon: "images/yellow.png",
                    message: "It's a Yellow flag day. Moderate winds." };
-var redFlag = { name: "Red", icon: "red.png",
+var redFlag = { name: "Red", icon: "images/red.png",
                 message: "It's a Red flag day. High winds." };
-var closedFlag = { name: "Closed", icon: "closed.png",
+var closedFlag = { name: "Closed", icon: "images/closed.png",
                    message: "Community Boating is closed." };
 function errorFlag(contents) {
-    return { name: "Error", icon: "error.png",
-             message: "Error reading " + weatherUrl + " content: " + contents };
+    return { name: "Error", icon: "images/error.png",
+             message: "Error reading " + pollUrl + " content: " + contents };
 }
 
 var lastFlag = 0;
@@ -39,7 +39,7 @@ function getCurrentTime() {
 function updateFlag() {
   // Request Community Boating page.
   var request = new XMLHttpRequest();
-  request.open("GET", weatherUrl, false);
+  request.open("GET", pollUrl, false);
   request.send();  // Blocking request
 
   // Parse current flag status.
@@ -89,5 +89,5 @@ setInterval(updateFlag, 60 * 1000);
 
 // Go to CBI website on click.
 chrome.browserAction.onClicked.addListener(function(tab) {
-  chrome.tabs.create({ url: cbiMainUrl });
+  chrome.tabs.create({ url: clickUrl });
 });
