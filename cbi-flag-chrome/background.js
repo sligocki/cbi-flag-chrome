@@ -4,7 +4,7 @@
  */
 
 var clickUrl = "http://www.community-boating.org/about-us/weather-information/";
-var pollUrl = "http://apex4.enciva.com/pls/apex/cbi_prod.flag_js";
+var pollUrl = "https://portal2.community-boating.org/pls/apex/CBI_PROD.FLAG_JS";
 
 var greenFlag = { name: "Green", icon: "images/green.png",
                   message: "It's a Green flag day. Low winds." };
