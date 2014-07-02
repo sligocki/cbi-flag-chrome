@@ -76,9 +76,8 @@ function updateFlag() {
 
   // Send notification.
   if (flag !== lastFlag) {
-    var notification = webkitNotifications.createNotification(
-        flag.icon, flag.name + " " + getCurrentTime(), flag.message);
-    notification.show();
+    var notification = new Notification(flag.name + " " + getCurrentTime(),
+                                        {body: flag.message, icon: flag.icon});
     lastFlag = flag;
   }
 }
