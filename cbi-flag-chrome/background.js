@@ -20,6 +20,7 @@ function errorFlag(contents) {
 }
 
 var lastFlag = 0;
+var lastNotification;
 
 // Get current time string in format: 12/13 12:45
 function getCurrentTime() {
@@ -76,7 +77,12 @@ function updateFlag() {
 
   // Send notification.
   if (flag !== lastFlag) {
-    var notification = new Notification(flag.name + " " + getCurrentTime(),
+    // Remove old notification.
+    if (lastNotification) {
+      lastNotification.close()
+    }
+    // Create new notification.
+    lastNotification = new Notification(flag.name + " " + getCurrentTime(),
                                         {body: flag.message, icon: flag.icon});
     lastFlag = flag;
   }
